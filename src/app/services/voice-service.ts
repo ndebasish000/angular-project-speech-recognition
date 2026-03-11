@@ -68,24 +68,9 @@ export class VoiceService {
 
   appendFinalText: (text: string) => void = () => { };
 
-  async setupMicrophone() {
-
-    const stream = await navigator.mediaDevices.getUserMedia({
-      audio: {
-        noiseSuppression: true,
-        echoCancellation: true,
-        autoGainControl: true
-      }
-    });
-
-    console.log("Microphone ready", stream);
-
-  }
-
-  async start() {
+  start() {
     if (this.isListening()) return;
     this.shouldRestart = true;
-    await this.setupMicrophone();
     try {
       this.recognition.start();
     } catch (e) {
