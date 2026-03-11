@@ -23,6 +23,7 @@ export class VoiceService {
     this.recognition.lang = 'en-US';
     this.recognition.interimResults = true;
     this.recognition.continuous = false;
+    this.recognition.maxAlternatives = 1;
 
     this.initEvents();
   }
