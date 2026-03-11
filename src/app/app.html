@@ -1,0 +1,34 @@
+<div class="ai-container">
+  <div class="chat-box">
+    <div class="chat-section">
+      <div class="w-100" *ngFor="let message of chatData">
+        <div class="message {{ message.type }}">
+          <div class="{{ message?.type === 'sent' ? 'sent-text' : 'recieved-text' }}">
+            {{ message.text }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="input-section">
+
+      <input type="text" #aiInput [disabled]="voice.isListening()" placeholder="Ask me anything about your projects"
+        class="ai-input" [value]="inputText + voice.interimTranscript()" (input)="inputText = aiInput.value" />
+
+      <div class="input-icons">
+
+        <span class="mic">
+          <i *ngIf="!voice.isListening()" class="bi bi-mic" (click)="voice.start()"></i>
+          <i *ngIf="voice.isListening()" class="bi bi-stop-circle" (click)="voice.stop()"></i>
+        </span>
+
+        <span class="send">
+          <button class="send-btn" [disabled]="!inputText.trim() || voice.isListening()" (click)="sendMessage()">
+            <i class="bi bi-send"></i>
+          </button>
+        </span>
+
+      </div>
+
+    </div>
+  </div>
+</div>
