@@ -22,7 +22,7 @@ export class VoiceService {
 
     this.recognition.lang = 'en-US';
     this.recognition.interimResults = true;
-    this.recognition.continuous = false;
+    this.recognition.continuous = true;
     this.recognition.maxAlternatives = 1;
 
     this.initEvents();
@@ -51,15 +51,15 @@ export class VoiceService {
       this.interimTranscript.set(interim);
     };
 
-    this.recognition.onend = () => {
-      this.isListening.set(false);
+    // this.recognition.onend = () => {
+    //   this.isListening.set(false);
 
-      if (this.shouldRestart) {
-        setTimeout(() => {
-          this.recognition.start();
-        }, 50);
-      }
-    };
+    //   // if (this.shouldRestart) {
+    //   //   setTimeout(() => {
+    //   //     this.recognition.start();
+    //   //   }, 50);
+    //   // }
+    // };
 
     this.recognition.onerror = (event: any) => {
       console.error("Speech error", event);
@@ -70,7 +70,8 @@ export class VoiceService {
   appendFinalText: (text: string) => void = () => { };
 
   start() {
-    if (this.isListening()) return;
+    console.log("Starting recognition", this.isListening());
+    // if (this.isListening()) return;
     this.shouldRestart = true;
     try {
       this.recognition.start();
@@ -80,8 +81,10 @@ export class VoiceService {
   }
 
   stop() {
+    console.log("stop recognition", this.isListening());
+    this.isListening.set(false);
     this.shouldRestart = false;
-    if (!this.isListening()) return;
+    // if (!this.isListening()) return;
     this.recognition.stop();
 
   }
