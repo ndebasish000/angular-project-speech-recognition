@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
-import * as signalR from '@microsoft/signalr';
-import * as SpeechSDK from 'microsoft-cognitiveservices-speech-sdk';
+// import * as signalR from '@microsoft/signalr';
+// import * as SpeechSDK from 'microsoft-cognitiveservices-speech-sdk';
+
 
 @Injectable({
   providedIn: 'root',
@@ -48,14 +49,25 @@ export class AzureSpeechService {
 
   // }
 
-  recognizer!: SpeechSDK.SpeechRecognizer;
+  // recognizer!: SpeechSDK.SpeechRecognizer;
+  private SpeechSDK: any;
+  recognizer: any;
   partialText = signal('');
   finalText = signal('');
   isListening = signal(false);
 
-  startRecognition() {
+  async loadSDK() {
+    if (!this.SpeechSDK) {
+      this.SpeechSDK = await import(
+        'microsoft-cognitiveservices-speech-sdk'
+      );
+    }
+  }
+
+  async startRecognition() {
+    await this.loadSDK();
     const speechConfig =
-      SpeechSDK.SpeechConfig.fromSubscription(
+      this.SpeechSDK.SpeechConfig.fromSubscription(
         "1yjMj2jmcBVkeZ9tGwN6X0Lsw7CgvCeqMjWXw4QQQNUr1s94rGwOJQQJ99BDACYeBjFXJ3w3AAAAACOGLYWD",
         "eastus"
       );
@@ -64,31 +76,31 @@ export class AzureSpeechService {
     speechConfig.enableDictation();
 
     speechConfig.setProperty(
-      SpeechSDK.PropertyId.SpeechServiceResponse_PostProcessingOption,
+      this.SpeechSDK.PropertyId.SpeechServiceResponse_PostProcessingOption,
       "TrueText"
     );
 
     speechConfig.setProperty(
-      SpeechSDK.PropertyId.SpeechServiceConnection_EndSilenceTimeoutMs,
+      this.SpeechSDK.PropertyId.SpeechServiceConnection_EndSilenceTimeoutMs,
       "1500"
     );
 
     const audioConfig =
-      SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+      this.SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
 
     this.recognizer =
-      new SpeechSDK.SpeechRecognizer(
+      new this.SpeechSDK.SpeechRecognizer(
         speechConfig,
         audioConfig
       );
 
     this.isListening.set(true);
 
-    this.recognizer.recognizing = (s, e) => {
+    this.recognizer.recognizing = (s: any, e: any) => {
       this.partialText.set(e.result.text);
     };
 
-    this.recognizer.recognized = (s, e) => {
+    this.recognizer.recognized = (s: any, e: any) => {
       if (e.result.text) {
         const current = this.finalText();
         const finaleText = current + " " + e.result.text
