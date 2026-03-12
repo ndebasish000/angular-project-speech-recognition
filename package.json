@@ -30,9 +30,11 @@
     "@angular/router": "^20.3.0",
     "@microsoft/signalr": "^10.0.0",
     "bootstrap-icons": "^1.13.1",
+    "events": "^3.3.0",
     "microsoft-cognitiveservices-speech-sdk": "^1.48.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "util": "^0.12.5",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
