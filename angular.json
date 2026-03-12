@@ -21,15 +21,6 @@
             "polyfills": [
               "zone.js"
             ],
-            "externalDependencies": [
-              "url",
-              "assert",
-              "util",
-              "events",
-              "http",
-              "https",
-              "stream"
-            ],
             "allowedCommonJsDependencies": [
               "microsoft-cognitiveservices-speech-sdk"
             ],

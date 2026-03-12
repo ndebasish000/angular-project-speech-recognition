@@ -58,9 +58,24 @@ export class AzureSpeechService {
 
   async loadSDK() {
     if (!this.SpeechSDK) {
-      this.SpeechSDK = await import(
-        'microsoft-cognitiveservices-speech-sdk'
-      );
+      // this.SpeechSDK = await import(
+      //   'microsoft-cognitiveservices-speech-sdk'
+      // );
+
+      await new Promise<void>((resolve) => {
+
+        const script = document.createElement('script');
+
+        script.src =
+          'https://aka.ms/csspeech/jsbrowserpackageraw';
+
+        script.onload = () => {
+          this.SpeechSDK = (window as any).SpeechSDK;
+          resolve();
+        };
+
+        document.body.appendChild(script);
+      });
     }
   }
 

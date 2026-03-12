@@ -4,16 +4,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": [],
-    "paths": {
-      "url": ["./src/shims/empty.ts"],
-      "assert": ["./src/shims/empty.ts"],
-      "util": ["./src/shims/empty.ts"],
-      "events": ["./src/shims/empty.ts"],
-      "http": ["./src/shims/empty.ts"],
-      "https": ["./src/shims/empty.ts"],
-      "stream": ["./src/shims/empty.ts"]
-    }
+    "types": []
   },
   "include": [
     "src/**/*.ts"
