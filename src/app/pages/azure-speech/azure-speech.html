@@ -1,0 +1,92 @@
+<!-- <button (click)="start()" [disabled]="isRecording">
+Start 🎤
+</button>
+
+<button (click)="stop()" [disabled]="!isRecording">
+Stop ⏹
+</button>
+
+<h3>Speaking</h3>
+
+<p style="color:gray">
+{{partialText}}
+</p>
+
+<h3>Transcript</h3>
+
+<div style="border:1px solid #ccc;padding:10px">
+
+{{finalText}}
+
+</div> -->
+
+<!-- <div style="padding:20px">
+
+    <h2>Voice Capture</h2>
+
+    <button (click)="start()" [disabled]="azureSpeechService.isListening()">
+        Start 🎤
+    </button>
+
+    <button (click)="stop()" [disabled]="!azureSpeechService.isListening()">
+        Stop ⏹
+    </button>
+
+    <hr>
+
+    <h3>Live Words</h3>
+
+    <p style="color:gray;font-size:18px">
+
+        {{ azureSpeechService.partialText() }}
+
+    </p>
+
+    <h3>Final Transcript</h3>
+
+    <div style="
+        border:1px solid #ccc;
+        padding:15px;
+        min-height:100px;
+        font-size:18px">
+
+        {{ azureSpeechService.finalText() }}
+
+    </div>
+
+</div> -->
+
+<div class="ai-container">
+  <div class="chat-box">
+    <div class="chat-section">
+      <div class="w-100" *ngFor="let message of chatData">
+        <div class="message {{ message.type }}">
+          <div class="{{ message?.type === 'sent' ? 'sent-text' : 'recieved-text' }}">
+            {{ message.text }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="input-section">
+
+      <input type="text" #aiInput [disabled]="azureSpeechService.isListening()" placeholder="Ask me anything about your projects"
+        class="ai-input" [value]="inputText + azureSpeechService.partialText()" (input)="inputText = aiInput.value" />
+
+      <div class="input-icons">
+
+        <span class="mic">
+          <i *ngIf="!azureSpeechService.isListening()" class="bi bi-mic" (click)="start()"></i>
+          <i *ngIf="azureSpeechService.isListening()" class="bi bi-stop-circle" (click)="stop()"></i>
+        </span>
+
+        <span class="send">
+          <button class="send-btn" [disabled]="!inputText.trim() || azureSpeechService.isListening()" (click)="sendMessage()">
+            <i class="bi bi-send"></i>
+          </button>
+        </span>
+
+      </div>
+
+    </div>
+  </div>
+</div>
