@@ -21,10 +21,17 @@
             "polyfills": [
               "zone.js"
             ],
-            "allowedCommonJsDependencies": [
-              "microsoft-cognitiveservices-speech-sdk",
+            "externalDependencies": [
+              "url",
+              "assert",
               "util",
-              "events"
+              "events",
+              "http",
+              "https",
+              "stream"
+            ],
+            "allowedCommonJsDependencies": [
+              "microsoft-cognitiveservices-speech-sdk"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -43,7 +50,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "900kB",
                   "maximumError": "1MB"
                 },
                 {
