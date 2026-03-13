@@ -3,6 +3,7 @@ import { Component, effect } from '@angular/core';
 import { VoiceService } from './services/voice-service';
 import { FormsModule } from '@angular/forms';
 import { AzureSpeech } from './pages/azure-speech/azure-speech';
+import { AzureSignalrSpeech } from './pages/azure-signalr-speech/azure-signalr-speech';
 
 @Component({
   selector: 'app-root',

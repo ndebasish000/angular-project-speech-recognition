@@ -1,5 +1,4 @@
 import { Injectable, signal } from '@angular/core';
-// import * as signalR from '@microsoft/signalr';
 // import * as SpeechSDK from 'microsoft-cognitiveservices-speech-sdk';
 
 
@@ -7,47 +6,6 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class AzureSpeechService {
-
-  // private connection!: signalR.HubConnection;
-
-  // connect(partialCb: any, finalCb: any) {
-
-  //   this.connection =
-  //     new signalR.HubConnectionBuilder()
-  //       .withUrl("https://localhost:5001/speechHub")
-  //       .withAutomaticReconnect()
-  //       .build();
-
-  //   this.connection.start();
-
-  //   this.connection.on("partialText", (text: string) => {
-  //     partialCb(text);
-  //   });
-
-  //   this.connection.on("finalText", (text: string) => {
-  //     finalCb(text);
-  //   });
-
-  // }
-
-  // start() {
-  //   this.connection.invoke("StartRecognition");
-  // }
-
-  // stop() {
-  //   this.connection.invoke("StopRecognition");
-  // }
-
-  // async sendAudio(blob: Blob) {
-  //   const buffer = await blob.arrayBuffer();
-  //   console.log("Audio data available",  Array.from(new Uint8Array(buffer)));
-
-  //   // this.connection.invoke(
-  //   //   "SendAudio",
-  //   //   Array.from(new Uint8Array(buffer))
-  //   // );
-
-  // }
 
   // recognizer!: SpeechSDK.SpeechRecognizer;
   private SpeechSDK: any;

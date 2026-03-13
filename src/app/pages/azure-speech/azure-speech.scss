@@ -64,18 +64,34 @@
 }
 
 .ai-input {
+  // width: 100%;
+  // padding: 12px 80px 12px 14px;
+  // border-radius: 8px;
+  // border: 1px solid #dcdcdc;
+  // outline: none;
   width: 100%;
   padding: 12px 80px 12px 14px;
   border-radius: 8px;
   border: 1px solid #dcdcdc;
   outline: none;
+  resize: none;
+  min-height: 40px;
+  max-height: 120px;
+  overflow-y: hidden;
+  line-height: 1.5;
 }
 
 .input-icons {
+  // position: absolute;
+  // right: 10px;
+  // top: 25px;
+  // transform: translateY(-50%);
+  // display: flex;
+  // gap: 12px;
+
   position: absolute;
   right: 10px;
-  top: 25px;
-  transform: translateY(-50%);
+  bottom: 10px;
   display: flex;
   gap: 12px;
 }

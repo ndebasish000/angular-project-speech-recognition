@@ -1,25 +1,3 @@
-<!-- <button (click)="start()" [disabled]="isRecording">
-Start 🎤
-</button>
-
-<button (click)="stop()" [disabled]="!isRecording">
-Stop ⏹
-</button>
-
-<h3>Speaking</h3>
-
-<p style="color:gray">
-{{partialText}}
-</p>
-
-<h3>Transcript</h3>
-
-<div style="border:1px solid #ccc;padding:10px">
-
-{{finalText}}
-
-</div> -->
-
 <!-- <div style="padding:20px">
 
     <h2>Voice Capture</h2>
@@ -69,8 +47,13 @@ Stop ⏹
     </div>
     <div class="input-section">
 
-      <input type="text" #aiInput [disabled]="azureSpeechService.isListening()" placeholder="Ask me anything about your projects"
-        class="ai-input" [value]="inputText + azureSpeechService.partialText()" (input)="inputText = aiInput.value" />
+      <!-- <input type="text" #aiInput [disabled]="azureSpeechService.isListening()" placeholder="Ask me anything about your projects"
+        class="ai-input" [value]="inputText + azureSpeechService.partialText()" (input)="inputText = aiInput.value" /> -->
+
+      <textarea #aiInput rows="1" class="ai-input" [disabled]="azureSpeechService.isListening()"
+        placeholder="Ask me anything about your projects" [value]="inputText + azureSpeechService.partialText()"
+        (input)="onInputChange()">
+      </textarea>
 
       <div class="input-icons">
 
@@ -80,7 +63,8 @@ Stop ⏹
         </span>
 
         <span class="send">
-          <button class="send-btn" [disabled]="!inputText.trim() || azureSpeechService.isListening()" (click)="sendMessage()">
+          <button class="send-btn" [disabled]="!inputText.trim() || azureSpeechService.isListening()"
+            (click)="sendMessage()">
             <i class="bi bi-send"></i>
           </button>
         </span>

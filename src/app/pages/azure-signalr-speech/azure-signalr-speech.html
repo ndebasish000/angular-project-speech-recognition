@@ -1,0 +1,21 @@
+<button (click)="start()" [disabled]="isRecording">
+Start 🎤
+</button>
+
+<button (click)="stop()" [disabled]="!isRecording">
+Stop ⏹
+</button>
+
+<h3>Speaking</h3>
+
+<p style="color:gray">
+{{partialText}}
+</p>
+
+<h3>Transcript</h3>
+
+<div style="border:1px solid #ccc;padding:10px">
+
+{{finalText}}
+
+</div>
